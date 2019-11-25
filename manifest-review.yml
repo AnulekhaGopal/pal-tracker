@@ -1,0 +1,8 @@
+---
+applications:
+- name: pal-tracker
+  path: src/PalTracker/bin/Release/netcoreapp2.2/publish/
+ routes:
+  - route: pal-tracker-empathic-review-grysbok.cfapps.io
+    env:
+    WELCOME_MESSAGE: Hello from the review environment
