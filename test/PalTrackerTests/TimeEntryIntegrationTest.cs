@@ -62,6 +62,7 @@ namespace PalTrackerTests
             var responseBody = JArray.Parse(response.Content.ReadAsStringAsync().Result);
 
             Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            Assert.Equal(2, responseBody.Count);
 
             Assert.Equal(id1, responseBody[0]["id"].ToObject<int>());
             Assert.Equal(222, responseBody[0]["projectId"].ToObject<long>());

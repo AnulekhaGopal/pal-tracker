@@ -12,7 +12,8 @@ namespace PalTracker
         {
             _timeEntryRepository = timeEntryRepository;
         }
-  [HttpGet("{id}", Name = "GetTimeEntry")]
+       
+        [HttpGet("{id}", Name = "GetTimeEntry")]
         public IActionResult Read(long id)
         {
             TimeEntry timeEntry = _timeEntryRepository.Find(id);
@@ -29,14 +30,14 @@ namespace PalTracker
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult Create(TimeEntry timeEntry)
+        public IActionResult Create([FromBody] TimeEntry timeEntry)
         {
             TimeEntry timeEntry1 = _timeEntryRepository.Create(timeEntry);
 
-            return CreatedAtAction("Create", timeEntry);
+            return CreatedAtRoute("GetTimeEntry",new {id = timeEntry1.Id},  timeEntry1);
         }
 
- [HttpGet]
+        [HttpGet]
         public IActionResult List()
         {
             System.Collections.Generic.List<TimeEntry> list = _timeEntryRepository.List();
@@ -45,7 +46,7 @@ namespace PalTracker
         }
 
 [HttpPut("{id}")]
-        public IActionResult Update(long id, TimeEntry timeEntry)
+        public IActionResult Update(long id, [FromBody] TimeEntry timeEntry)
         {
            TimeEntry timeEntry1 = _timeEntryRepository.Update(id, timeEntry);
 
@@ -61,17 +62,14 @@ namespace PalTracker
  [HttpDelete("{id}")]
         public IActionResult Delete(long id)
         {
-            var result= _timeEntryRepository.Delete(id);
-            
-            if (!result)
+             if (!_timeEntryRepository.Contains(id))
             {
                 return NotFound();
-
             }
-            else
-            {
-                return NoContent();
+            else{
+                _timeEntryRepository.Delete(id);
             }
+             return NoContent();         
         }
     }
 }

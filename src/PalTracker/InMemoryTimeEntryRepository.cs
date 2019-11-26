@@ -47,6 +47,7 @@ namespace PalTracker
 
         public bool Delete(long id)
         {
+
           var timeEntry = TimeEntryList.Find(x=>x.Id == id);
 
             if (timeEntry == null)
