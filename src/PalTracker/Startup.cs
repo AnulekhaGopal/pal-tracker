@@ -30,6 +30,8 @@ namespace PalTracker
                Configuration.GetValue<string>("WELCOME_MESSAGE", "WELCOME_MESSAGE not configured.")
            ));
 
+           services.AddSingleton<ITimeEntryRepository, InMemoryTimeEntryRepository>();
+
            services.AddSingleton(sp => new CloudFoundryInfo(
                Configuration.GetValue<string>("PORT", "Port not configured"),
                Configuration.GetValue<string>("MEMORY_LIMIT", "MEMORY_LIMIT not configured"),
