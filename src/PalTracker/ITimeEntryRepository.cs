@@ -12,7 +12,7 @@ namespace PalTracker
 
         bool Contains(long id);
 
-        List<TimeEntry> List();
+        IEnumerable<TimeEntry> List();
 
         TimeEntry Update(long id, TimeEntry entry);
 

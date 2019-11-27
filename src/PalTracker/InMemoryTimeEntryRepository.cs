@@ -40,7 +40,7 @@ namespace PalTracker
              return timeEntry == null ? null : timeEntry;
         }
 
-        public List<TimeEntry> List()
+        public IEnumerable<TimeEntry> List()
         {
             return TimeEntryList;            
         }

@@ -59,9 +59,9 @@ namespace PalTracker
         private TimeEntryRecord FindRecord(long id) =>
             _context.TimeEntryRecords.AsNoTracking().FirstOrDefault(t => t.Id == id);
 
-        public List<TimeEntry> List()
+        public IEnumerable<TimeEntry> List()
         {
-              return _context.TimeEntryRecords.AsNoTracking().Select(t => t.ToEntity()).ToList();
+              return _context.TimeEntryRecords.AsNoTracking().Select(t => t.ToEntity());
 
         }
     }
