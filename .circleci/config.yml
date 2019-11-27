@@ -105,7 +105,7 @@ jobs:
       - run:
           name: Install jq
           command: |
-            apt-get iy install jq
+            apt-get -y install jq
 
       - run:
           name: Install flyway
